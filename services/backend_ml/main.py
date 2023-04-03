@@ -16,9 +16,8 @@ model_storage = {}
 async def lifespan(app: FastAPI):
     with open("models.yaml", "rw") as model_cfg_file:
         print("Model file loaded.")
-    
     yield
-
+    print("Shutting down...")
 
 
 app = FastAPI()
