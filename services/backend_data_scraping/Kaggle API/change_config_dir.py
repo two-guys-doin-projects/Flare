@@ -1,4 +1,6 @@
 import os
 
-print(os.getcwd())
-os.environ['KAGGLE_CONFIG_DIR'] = '/home/filip/PycharmProjects/MultiLearning/kaggle'
+try:
+    os.environ['KAGGLE_CONFIG_DIR'] = './kaggle'
+except NameError:
+    print("Nie udało się znaleźć pliku konfiguracyjnego kaggle")
