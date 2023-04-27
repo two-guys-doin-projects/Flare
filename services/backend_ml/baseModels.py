@@ -10,8 +10,9 @@ class neuralNet(nn.Module):
         for layer in range(num_layers):
             net.append(nn.Linear(hidden_size, hidden_size))
         net.append(nn.Linear(hidden_size, output_size))
+        net.append(nn.Softmax(dim=0))
         self.architechture = nn.Sequential(*net)
     def forward(self, x):
-        x = self.architechture(x)
-        y_hat = func.softmax(x, dim=1)
+        y_hat = self.architechture(x)
         return y_hat
+    
