@@ -1,4 +1,3 @@
-from init_kaggle import kaggle_api_authentication
 import pandas as pd
 
 
@@ -27,13 +26,5 @@ def check_if_dataset_is_available(api, length, datasets_frame):
 
     return df_of_available_datasets
 
-
-if __name__ == "__main__":
-    kaggle_api = kaggle_api_authentication()
-    # place holder
-    dataset_name = "air quality"
-    list_of_datasets, list_of_files = show_datasets(kaggle_api, dataset_name)
-    print(f"Lista zbiorów danych spod hasła {dataset_name}: \n {list_of_datasets}")
-    print(f"Lista możliwych plików do pobrania: \n {list_of_files}")
 
 
