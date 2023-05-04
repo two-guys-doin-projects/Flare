@@ -10,7 +10,7 @@ def saveModel(name: str, model):
 
 def saveModelParams(name: str, architecture_parameter_dict: dict):
     with open(f"./usrModels/{name}.json", "+w") as param_file:
-        param_file.write(json.stringify(architecture_parameter_dict))
+        param_file.write(json.dumps(architecture_parameter_dict))
 
 def importModel(name: str):
     raise NotImplementedError
