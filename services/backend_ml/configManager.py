@@ -4,7 +4,9 @@ import torch
 
 def saveModel(name: str, model):
     path = f"./usrModels/{name}.pth"
-    torch.save(model.state_dict(), path)    
+    torch.save(model.state_dict(), path)
+    if not os.path.exists(f"./usrModels/{name}.json"):
+        saveModelParams(name, model.params)
 
 def saveModelParams(name: str, architecture_parameter_dict: dict):
     with open(f"./usrModels/{name}.json", "+w") as param_file:
