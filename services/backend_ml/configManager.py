@@ -1,7 +1,10 @@
 import json
+import os
+import torch
 
-def saveModel(name: str):
-    raise NotImplementedError
+def saveModel(name: str, model):
+    path = f"./usrModels/{name}.pth"
+    torch.save(model.state_dict(), path)    
 
 def saveModelParams(name: str, architecture_parameter_dict: dict):
     with open(f"./usrModels/{name}.json", "+w") as param_file:
@@ -15,3 +18,8 @@ def importModelParams(name: str):
 
 def flushModelMemoryToFile(file_name: str, loaded_models: dict):
     raise NotImplementedError
+
+def  deleteModel(name: str, truncate: bool = False):
+    os.remove(f"./usrModels/{name}.pth")
+    if truncate:
+        os.remove(f"./usrModels/{name}.json")
