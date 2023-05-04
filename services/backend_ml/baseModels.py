@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as func
 
+
 class neuralNet(nn.Module):
     def __init__(self, input_size: int, hidden_size: int, num_layers: int, output_size: int):
         super().__init__()
@@ -15,4 +16,3 @@ class neuralNet(nn.Module):
     def forward(self, x):
         y_hat = self.architechture(x)
         return y_hat
-    
