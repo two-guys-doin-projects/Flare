@@ -21,7 +21,6 @@ def saveModelParams(name: str, architecture_parameter_dict: dict):
     with open(f"./usrModels/{name}.json", "+w") as param_file:
         param_file.write(json.dumps(architecture_parameter_dict))
 
-#TODO how to handle recreating different types of models?
 
 def importModel(name: str):
     path = f"./usrModels/{name}"
