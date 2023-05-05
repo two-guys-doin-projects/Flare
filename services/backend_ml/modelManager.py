@@ -62,3 +62,4 @@ def  deleteModelFromDisk(name: str, truncate: bool = False):
     os.remove(f"./usrModels/{name}.pth")
     if truncate:
         os.remove(f"./usrModels/{name}.json")
+
