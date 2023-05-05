@@ -3,6 +3,11 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 def kaggle_api_authentication():
+    """
+    Funkcja służąca do autentykacji połączenia z kaggle.com
+
+    :return: zwraca klucz do API
+    """
     try:
         api = KaggleApi()
         api.authenticate()
@@ -10,5 +15,3 @@ def kaggle_api_authentication():
         return api
     except NameError:
         return print("Nie udało się połączyć z API Kaggle")
-
-
