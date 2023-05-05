@@ -7,6 +7,7 @@ class neuralNet(nn.Module):
     def __init__(self, param_dict: dict):
         super().__init__()
         self.params = param_dict
+        self.params['type'] = 'neural'
         net = []
         net.append(nn.Linear(param_dict['input_size'], param_dict['hidden_size']))
         for layer in range(param_dict['num_layers']):
