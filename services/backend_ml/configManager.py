@@ -2,6 +2,7 @@ import json
 import os
 import torch
 import torch.nn as nn
+import baseModels as models
 
 def saveModel(name: str, model: nn.Module):
     """
@@ -9,7 +10,7 @@ def saveModel(name: str, model: nn.Module):
     # Parametry
 
     - `name`: String - nazwa, pod jaką ma być zapisany model.
-    - `model`: torch.nn.Module(lub klasy dziedziczące) - model do zapisu. Musi posiadać słownik parametrów jako atrybut `params`
+    - `model`: torch.nn.Module(lub klasy dziedziczące) - model do zapisu. Musi posiadać słownik parametrów jako atrybut `params`.
     """
     path = f"./usrModels/{name}.pth"
     torch.save(model.state_dict(), path)
@@ -25,7 +26,16 @@ def saveModelParams(name: str, architecture_parameter_dict: dict):
 def importModel(name: str):
     path = f"./usrModels/{name}"
     if not os.path.exists(f"{path}.json"):
-        return 0
+        return FileNotFoundError
+    params = importModelParams(name)
+    if params['type'] =='neural':
+        model = models.neuralNet(params)
+    else:
+        raise TypeError("Nie znaleziono typu architektury podanego w pliku konfiguracyjnym.")
+    if os.path.exists(f"{path}.pth"):
+        model.load_state_dict(torch.load(f"{path}.pth"))
+    return model
+
 
 #TODO test importing
 
@@ -35,7 +45,8 @@ def importModelParams(name: str) -> dict:
     """
     if not os.path.exists(f"./usrModels/{name}.json"):
         raise FileNotFoundError
-    return json.load(f"./usrModels/{name}.json")
+    with open(f"./usrModels/{name}.json") as param_file:
+        return json.load(param_file)
 
 def flushModelMemoryToFile(file_name: str, loaded_models: dict):
     raise NotImplementedError
