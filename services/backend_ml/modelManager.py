@@ -21,7 +21,6 @@ def saveModelParams(name: str, architecture_parameter_dict: dict):
     with open(f"./usrModels/{name}.json", "+w") as param_file:
         param_file.write(json.dumps(architecture_parameter_dict))
 
-
 def importModel(name: str):
     path = f"./usrModels/{name}"
     if not os.path.exists(f"{path}.json"):
@@ -35,9 +34,6 @@ def importModel(name: str):
         model.load_state_dict(torch.load(f"{path}.pth"))
     return model
 
-
-#TODO test importing
-
 def importModelParams(name: str) -> dict:
     """
     Zwraca słownik parametrów architektury wczytany z pliku konfiguracyjnego o podanej nazwie.
@@ -47,8 +43,9 @@ def importModelParams(name: str) -> dict:
     with open(f"./usrModels/{name}.json") as param_file:
         return json.load(param_file)
 
-def flushModelMemoryToFile(file_name: str, loaded_models: dict):
-    raise NotImplementedError
+def flushModelMemoryToFile(loaded_models: dict):
+    for model_name in loaded_models:
+        saveModel(model_name, loaded_models[model_name])
 
 def  deleteModelFromDisk(name: str, truncate: bool = False):
     """
@@ -62,4 +59,3 @@ def  deleteModelFromDisk(name: str, truncate: bool = False):
     os.remove(f"./usrModels/{name}.pth")
     if truncate:
         os.remove(f"./usrModels/{name}.json")
-
