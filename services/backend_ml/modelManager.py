@@ -22,6 +22,7 @@ def saveModelParams(name: str, architecture_parameter_dict: dict):
         param_file.write(json.dumps(architecture_parameter_dict))
 
 def importModel(name: str):
+    """ Importuje model o podanej nazwie i zwraca go jako wynik. """
     path = f"./usrModels/{name}"
     if not os.path.exists(f"{path}.json"):
         return FileNotFoundError
@@ -44,6 +45,7 @@ def importModelParams(name: str) -> dict:
         return json.load(param_file)
 
 def flushModelMemoryToFile(loaded_models: dict):
+    """Zapisuje wszystkie modele załadowane do słownika."""
     for model_name in loaded_models:
         saveModel(model_name, loaded_models[model_name])
 
