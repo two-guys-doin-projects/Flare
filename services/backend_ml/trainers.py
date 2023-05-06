@@ -10,7 +10,7 @@ import torch.nn as nn
 # if you're feeling fancy, make it:
 # do the above, but
 # make it save a checkpoint every epoch(or idk last three)
-# generate an accuracy report available under an API endpoint
+# generate an accuracy report for every checkpoint available under an API endpoint
 # and give an option to save a chosen chekpoint to the model's file
 
 class NeuralNetTrainer():
