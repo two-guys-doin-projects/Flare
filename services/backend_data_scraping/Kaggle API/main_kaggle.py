@@ -26,21 +26,22 @@ def show_available_datasets(name: str):
     return [{'ref': new_list_ref[i], 'subtitle': new_list_subtitle[i]} for i in range(len(new_list_ref))]
 
 
-
 @app.get("/show_dataframe")
 def show_available_datasets(index: int):
-    pass
+    downloaded_dataset = download_dataset(index)
+    datasets = downloaded_dataset.to_json(orient="records")
+    parsed = json.loads(datasets)
+    return {"Zbiór": parsed}
 
 
 @app.get("/selected_columns_of_dataframe")
 def selected_dataset(index: int):
     pass
 
+
 @app.get("/send_dataset_to_ml")
 def send_dataset_to_ml():
-    datasets = downloaded_dataset.to_json(orient="records")
-    parsed = json.loads(datasets)
-    return {"Zbiór": parsed}
+    pass
 
 
 def list_of_datasets(name):
@@ -53,10 +54,13 @@ def list_of_datasets(name):
     return datasets
 
 
-def download_dataset():
+def download_dataset(index):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    downloaded_dataset = download_dataset_kaggle.download_dataset(kaggle_api, list_of_datasets)
-    print(f"Pobierano: {downloaded_dataset}")
+    # placeholder for dataset name
+    datasets = list_of_datasets('air')
+    print(datasets.dataset)
+    downloaded_dataset = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
+    print(f"Pobierano: \n {downloaded_dataset}")
     return downloaded_dataset
 
 
