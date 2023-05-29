@@ -19,10 +19,12 @@ async def read_root():
 @app.get("/show_available_datasets")
 def show_available_datasets(name: str):
     datasets = list_of_datasets(name)
-    print(datasets.dataset)
     datasets_json = datasets.to_json(orient="records")
     parsed = json.loads(datasets_json)
-    return {"Lista zbiorów danych": parsed}
+    new_list_ref = [dic['dataset']['ref'] for dic in parsed]
+    new_list_subtitle = [dic['dataset']['subtitle'] for dic in parsed]
+    return [{'ref': new_list_ref[i], 'subtitle': new_list_subtitle[i]} for i in range(len(new_list_ref))]
+
 
 
 @app.get("/show_dataframe")
