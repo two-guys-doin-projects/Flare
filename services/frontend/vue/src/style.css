@@ -1,3 +1,4 @@
+/*
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -77,4 +78,47 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+*/
+
+:root{
+  Font-family: Arial, Helvetica Neue, Helvetica, sans-serif
+}
+
+/* button-like elements styling*/
+
+.btn{
+  background-color: #90ee90;
+}
+
+.btn:active{
+  background-color: #7cca7c
+}
+
+/* lists styling */
+
+.list-position{
+  padding-top: 5px;
+  background-color: #ededed;
+  border-bottom: 3px solid #a8a8a8;
+
+}
+
+.list-position p:first-child{
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 1px;
+}
+
+.list-position p{
+  margin-top: 0px;
+}
+
+.list-position:active{
+  background-color: #dcdcdc;
+}
+
+.panel{
+  background-color: #828282;
+  min-height: 100%;
 }
