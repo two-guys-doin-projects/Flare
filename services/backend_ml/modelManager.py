@@ -49,7 +49,7 @@ def flushModelMemoryToFile(loaded_models: dict):
     for model_name in loaded_models:
         saveModel(model_name, loaded_models[model_name])
 
-def  deleteModelFromDisk(name: str, truncate: bool = False):
+def deleteModelFromDisk(name: str, truncate: bool = False):
     """
     Usuwa model z dysku. Nie ingeruje w załadowane modele.
     # Parametry
@@ -61,3 +61,10 @@ def  deleteModelFromDisk(name: str, truncate: bool = False):
     os.remove(f"./usrModels/{name}.pth")
     if truncate:
         os.remove(f"./usrModels/{name}.json")
+
+def createModel(name: str, type: str, params: dict):
+    if name == "":
+        return TypeError("brak nazwy")
+    params['type'] = type
+    saveModelParams(name, params)
+    return importModel(name)
