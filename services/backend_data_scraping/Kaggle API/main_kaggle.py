@@ -1,12 +1,13 @@
 import json
 import uvicorn
-import pandas as pd
 import init_kaggle
 import search_datasets_kaggle
 import download_dataset_kaggle
-import requests
-from fastapi import FastAPI, UploadFile
+from typing_extensions import Annotated
+from fastapi import FastAPI, Query
 
+dataset_name = ''
+downloaded_dataset = ''
 
 app = FastAPI()
 
@@ -29,14 +30,18 @@ def show_available_datasets(name: str):
 @app.get("/show_dataframe")
 def show_available_datasets(index: int):
     downloaded_dataset = download_dataset(index)
-    datasets = downloaded_dataset.to_json(orient="records")
+    datasets = downloaded_dataset.head(25)
+    datasets = datasets.to_json(orient="records")
     parsed = json.loads(datasets)
     return {"Zbiór": parsed}
 
 
 @app.get("/selected_columns_of_dataframe")
-def selected_dataset(index: int):
-    pass
+def selected_dataset(index: Annotated[str, Query(min_length=1)]):
+    print(index)
+    number_of_columns = [int(g) for g in index.split(',')]
+    print(type(number_of_columns))
+    return {'kolumny: ': index}
 
 
 @app.get("/send_dataset_to_ml")
@@ -50,17 +55,13 @@ def list_of_datasets(name):
     datasets = search_datasets_kaggle.show_datasets(
         kaggle_api, dataset_name
     )
-    print(f"Lista zbiorów danych spod hasła {dataset_name}: \n {datasets}")
     return datasets
 
 
 def download_dataset(index):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    # placeholder for dataset name
-    datasets = list_of_datasets('air')
-    print(datasets.dataset)
+    datasets = list_of_datasets(dataset_name)
     downloaded_dataset = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
-    print(f"Pobierano: \n {downloaded_dataset}")
     return downloaded_dataset
 
 
