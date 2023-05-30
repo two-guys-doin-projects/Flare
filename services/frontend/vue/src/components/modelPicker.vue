@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import {useModelStore} from "./model.ts";
+
+const store = useModelStore();
 
 const models = [
     {name: 'neural1', type: 'neural'},
@@ -9,7 +12,7 @@ const models = [
 
 <template>
     <div class="panel">    
-        <div v-for="model in models" class="list-position">
+        <div v-for="model in models" class="list-position" @click="() => store.setName(model.name)">
             <p>{{ model.name }}</p>
             <p>{{ model.type }}</p>
         </div>
