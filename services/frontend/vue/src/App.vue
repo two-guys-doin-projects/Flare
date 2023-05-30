@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import modelDisplay from './components/modelDisplay.vue';
-import kaggleSearcher from './components/kaggleSearcher.vue';
-import { RouterLink } from 'vue-router';
+import sideBar from './components/sideBar.vue';
 </script>
 
 <template>
@@ -9,16 +8,29 @@ import { RouterLink } from 'vue-router';
   <modelDisplay />
 </div>
 <div class="main-content">
-  <router-view />
+  <div class="side-bar-wrapper">
+    <sideBar />
+  </div>
+  <div class="main-wrapper">
+    <router-view />
+  </div>
 </div>
 </template>
 
 <style scoped>
 .upper-bar{
   height: 84px;
-}
-.upper-bar{
-  max-width: 700px;
+  max-width: 1097px;
   margin: 0 auto;
+}
+.main-content{
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 1097px;
+  display: flex;
+  flex-direction: row;
+}
+.main-wrapper{
+  width: 421px;
 }
 </style>
