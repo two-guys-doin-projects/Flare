@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import {useModelStore} from "./model.ts";
 
 const store = useModelStore();
@@ -16,7 +17,7 @@ const models = [
             <p>{{ model.name }}</p>
             <p>{{ model.type }}</p>
         </div>
-        <div class="btn add-button"> + </div>
+        <div class="btn add-button"> <RouterLink to="/create_model"> + </RouterLink></div>
     </div>
 </template>
 

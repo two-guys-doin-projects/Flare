@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { useModelStore } from './model';
+import { useRouter, useRoute } from 'vue-router';
 
 const store = useModelStore();
+const router = useRouter();
+
+function switchToModelPicker(e){
+    router.push({path: "/select_model"})
+}
 
 </script>
 
 <template>
-    <div class="btn">
+    <div class="btn" @click="switchToModelPicker">
     <h3>Model</h3>
     <p>{{ store.name === "" ? "Wybierz model..." : store.name }}</p>
 </div>

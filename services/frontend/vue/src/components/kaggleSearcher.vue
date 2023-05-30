@@ -10,7 +10,7 @@ const phrase = ref<String>();
 <template>
 <div class="wrapper">
     <input v-bind="phrase" />
-    <div class="btn search-btn"></div>
+    <div class="btn search-btn">Wyszukaj</div>
 </div>
 </template>
 
@@ -23,7 +23,10 @@ const phrase = ref<String>();
 .search-btn{
     margin-top: 20px;
     width: 250px;
-    height: 50px
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
 }
 
 input{
@@ -31,4 +34,5 @@ input{
     width: 400px;
     height: 30px;
 }
+
 </style>
