@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import modelPicker from './components/modelPicker.vue';
+import modelDisplay from './components/modelDisplay.vue';
+import kaggleSearcher from './components/kaggleSearcher.vue';
 </script>
 
 <template>
-<div class="upper-bar"></div>
+<div class="upper-bar">
+  <modelDisplay />
+</div>
 <div class="main-content">
-  <modelPicker></modelPicker>
+  <kaggleSearcher/>
 </div>
 </template>
 
 <style scoped>
-
+.upper-bar{
+  height: 84px;
+}
 </style>
