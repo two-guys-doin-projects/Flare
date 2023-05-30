@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useKaggleStore } from './kaggleStore';
 import {ref} from 'vue';
 
 const phrase = ref<String>();
