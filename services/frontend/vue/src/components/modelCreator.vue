@@ -17,6 +17,7 @@
 <input v-model="out_s" />
 </div>
 
+<div class="btn create-btn">Utwórz...</div>
 
 </template>
 
@@ -38,5 +39,16 @@ let out_s = ref<String>("");
     margin-right: 10px;
     display: flex;
     justify-content: space-between;
+}
+.create-btn{
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: 108px;
+    height: 54px;
+    margin-top: 15px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 54px;
 }
 </style>
