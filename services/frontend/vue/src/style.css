@@ -119,6 +119,7 @@ button:focus-visible {
 }
 
 .panel{
-  background-color: #828282;
+  background-color: #ededed;
   min-height: 100%;
+  min-width:10%;
 }
