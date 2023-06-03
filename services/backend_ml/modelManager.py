@@ -3,6 +3,7 @@ import os
 import torch
 import torch.nn as nn
 import baseModels as models
+from typing import List
 
 def saveModel(name: str, model: nn.Module):
     """
@@ -68,3 +69,24 @@ def createModel(name: str, type: str, params: dict):
     params['type'] = type
     saveModelParams(name, params)
     return importModel(name)
+
+
+def listAvailableModels(model_dict: dict, saved_models_path: str = "") -> List[str]:
+    """
+    Zwraca listę dostępnych modeli.
+    # Parametry
+    - `model_dict`: słownik modeli załadowanych do pamięci.
+    - `saved_models_path`: ścieżka do katalogu z zapisanymi modelami. Niewymagana.
+    """
+    loaded_models = list(model_dict.keys())
+    saved_models = os.listdir(saved_models_path) if saved_models_path else list()
+    saved_models = list(map(trimExtension, saved_models))
+    #https://www.digitalocean.com/community/tutorials/get-unique-values-from-a-list-in-python#1-python-set-to-get-unique-values-from-a-list
+    all_models = list(set(loaded_models + saved_models))
+    return all_models
+
+def trimExtension(file_name: str) -> str:
+    return file_name.split('.')[0]
+
+def retrieveModelType(model: nn.Module) -> str:
+    return model.params['type']
