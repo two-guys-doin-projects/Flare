@@ -3,7 +3,7 @@ import os
 import torch
 import torch.nn as nn
 import baseModels as models
-from typing import List
+from typing import List, Tuple
 
 def saveModel(name: str, model: nn.Module):
     """
@@ -90,3 +90,14 @@ def trimExtension(file_name: str) -> str:
 
 def retrieveModelType(model: nn.Module) -> str:
     return model.params['type']
+
+def getIOShape(model_name: str) -> Tuple[int]:
+    """
+    Zwraca kształt wejścia i wyjścia modelu
+
+    w postaci krotki, której pierwsza wartość to ilośc wejść
+
+    a druga to ilość wyjść.
+    """
+    model_parameters = importModelParams(model_name)
+    return [model_parameters['input_size'], model_parameters['output_size']]
