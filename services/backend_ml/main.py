@@ -14,8 +14,7 @@ model_storage = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    with open("models.yaml", "rw") as model_cfg_file:
-        print("Model file loaded.")
+    print("Starting...")
     yield
     print("Shutting down...")
 
