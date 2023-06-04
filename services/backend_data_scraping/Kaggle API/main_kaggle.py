@@ -1,5 +1,7 @@
 import json
 import uvicorn
+import pandas as pd
+import math
 import init_kaggle
 import search_datasets_kaggle
 import download_dataset_kaggle
@@ -7,13 +9,11 @@ from typing_extensions import Annotated
 from fastapi import FastAPI, Query
 
 data_scraping_storage = {
+    'user_id': '',
     'dataset_name': '',
     'downloaded_dataset': '',
     'dataset_columns': []
 }
-
-dataset_name = ''
-downloaded_dataset = ''
 
 app = FastAPI()
 
@@ -52,9 +52,13 @@ def selected_dataset(index: Annotated[str, Query(min_length=1)]):
 
 @app.get("/send_dataset_to_ml")
 def send_dataset_to_ml():
-    dataset_training = None
-    dataset_test = None
-    return None
+    dataset_training, dataset_test = cut_dataset(data_scraping_storage['dataset_columns'])
+    dataset_training = dataset_training.to_json(orient="records")
+    dataset_test = dataset_test.to_json(orient="records")
+    parsed_training = json.loads(dataset_training)
+    parsed_test = json.loads(dataset_test)
+    return {"zbiór treningowy": parsed_training,
+            "zbiór testowy": parsed_test}
 
 
 def list_of_datasets(name):
@@ -74,7 +78,13 @@ def download_dataset(index):
 
 
 def cut_dataset(index: list):
-    pass
+    size = len(data_scraping_storage['downloaded_dataset'])
+    print(f"rozmiar to: {size}")
+    df = pd.DataFrame(data_scraping_storage['downloaded_dataset'])
+    print(type(df))
+    dataset_training = df.iloc[:math.floor(size/2), :]
+    dataset_test = df.iloc[math.floor(size/2):, :]
+    return dataset_training, dataset_test
 
 
 if __name__ == "__main__":
