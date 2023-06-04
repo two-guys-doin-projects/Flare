@@ -1,13 +1,19 @@
 import json
 import uvicorn
+import pandas as pd
+import math
 import init_kaggle
 import search_datasets_kaggle
 import download_dataset_kaggle
 from typing_extensions import Annotated
 from fastapi import FastAPI, Query
 
-dataset_name = ''
-downloaded_dataset = ''
+data_scraping_storage = {
+    'user_id': '',
+    'dataset_name': '',
+    'downloaded_dataset': '',
+    'dataset_columns': []
+}
 
 app = FastAPI()
 
@@ -39,30 +45,48 @@ def show_available_datasets(index: int):
 @app.get("/selected_columns_of_dataframe")
 def selected_dataset(index: Annotated[str, Query(min_length=1)]):
     print(index)
-    number_of_columns = [int(g) for g in index.split(',')]
-    print(type(number_of_columns))
+    data_scraping_storage['dataset_columns'] = [int(g) for g in index.split(',')]
+    print(data_scraping_storage['dataset_columns'])
     return {'kolumny: ': index}
 
 
 @app.get("/send_dataset_to_ml")
 def send_dataset_to_ml():
-    pass
+    dataset_training, dataset_test = cut_dataset(data_scraping_storage['dataset_columns'])
+    dataset_training = dataset_training.to_json(orient="records")
+    dataset_test = dataset_test.to_json(orient="records")
+    parsed_training = json.loads(dataset_training)
+    parsed_test = json.loads(dataset_test)
+    return {"zbiór treningowy": parsed_training,
+            "zbiór testowy": parsed_test}
 
 
 def list_of_datasets(name):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    dataset_name = name
+    data_scraping_storage['datasetname'] = name
     datasets = search_datasets_kaggle.show_datasets(
-        kaggle_api, dataset_name
+        kaggle_api, data_scraping_storage['datasetname']
     )
     return datasets
 
 
 def download_dataset(index):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    datasets = list_of_datasets(dataset_name)
-    downloaded_dataset = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
-    return downloaded_dataset
+    datasets = list_of_datasets(data_scraping_storage['dataset_name'])
+    data_scraping_storage['downloaded_dataset'] = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
+    return data_scraping_storage['downloaded_dataset']
+
+
+def cut_dataset(index: list):
+    size = len(data_scraping_storage['downloaded_dataset'])
+    print(f"rozmiar to: {size}")
+    df = pd.DataFrame(data_scraping_storage['downloaded_dataset'])
+    print(type(df))
+    dataset_training = df.iloc[math.floor(size/4):, :]
+    dataset_test = df.iloc[:math.floor(size/4), :]
+    print(f"rozmiar to: {len(dataset_training)}")
+    print(f"rozmiar to: {len(dataset_test)}")
+    return dataset_training, dataset_test
 
 
 if __name__ == "__main__":
