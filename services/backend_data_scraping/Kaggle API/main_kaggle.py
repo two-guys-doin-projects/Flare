@@ -6,6 +6,12 @@ import download_dataset_kaggle
 from typing_extensions import Annotated
 from fastapi import FastAPI, Query
 
+data_scraping_storage = {
+    'dataset_name': '',
+    'downloaded_dataset': '',
+    'dataset_columns': []
+}
+
 dataset_name = ''
 downloaded_dataset = ''
 
@@ -39,30 +45,36 @@ def show_available_datasets(index: int):
 @app.get("/selected_columns_of_dataframe")
 def selected_dataset(index: Annotated[str, Query(min_length=1)]):
     print(index)
-    number_of_columns = [int(g) for g in index.split(',')]
-    print(type(number_of_columns))
+    data_scraping_storage['dataset_columns'] = [int(g) for g in index.split(',')]
+    print(data_scraping_storage['dataset_columns'])
     return {'kolumny: ': index}
 
 
 @app.get("/send_dataset_to_ml")
 def send_dataset_to_ml():
-    pass
+    dataset_training = None
+    dataset_test = None
+    return None
 
 
 def list_of_datasets(name):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    dataset_name = name
+    data_scraping_storage['datasetname'] = name
     datasets = search_datasets_kaggle.show_datasets(
-        kaggle_api, dataset_name
+        kaggle_api, data_scraping_storage['datasetname']
     )
     return datasets
 
 
 def download_dataset(index):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    datasets = list_of_datasets(dataset_name)
-    downloaded_dataset = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
-    return downloaded_dataset
+    datasets = list_of_datasets(data_scraping_storage['dataset_name'])
+    data_scraping_storage['downloaded_dataset'] = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
+    return data_scraping_storage['downloaded_dataset']
+
+
+def cut_dataset(index: list):
+    pass
 
 
 if __name__ == "__main__":
