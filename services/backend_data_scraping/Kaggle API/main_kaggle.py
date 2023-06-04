@@ -43,10 +43,8 @@ def show_available_datasets(index: int):
 
 
 @app.get("/selected_columns_of_dataframe")
-def selected_dataset(index: Annotated[str, Query(min_length=1)]):
-    print(index)
+def selected_columns_of_dataframe(index: Annotated[str, Query(min_length=1)]):
     data_scraping_storage['dataset_columns'] = [int(g) for g in index.split(',')]
-    print(data_scraping_storage['dataset_columns'])
     return {'kolumny: ': index}
 
 
@@ -81,16 +79,13 @@ def cut_dataset(index: list):
     size = len(data_scraping_storage['downloaded_dataset'])
     print(f"rozmiar to: {size}")
     df = pd.DataFrame(data_scraping_storage['downloaded_dataset'])
-    print(type(df))
-    dataset_training = df.iloc[math.floor(size/4):, :]
-    dataset_test = df.iloc[:math.floor(size/4), :]
+    df_after_cut = df.drop(df.columns[index], axis=1)
+    dataset_training = df_after_cut.iloc[math.floor(size/4):, :]
+    dataset_test = df_after_cut.iloc[:math.floor(size/4), :]
     print(f"rozmiar to: {len(dataset_training)}")
     print(f"rozmiar to: {len(dataset_test)}")
     return dataset_training, dataset_test
 
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=8000)
 
 
 
