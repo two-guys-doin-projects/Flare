@@ -55,6 +55,6 @@ def ensureModelIsLoaded(model_name: str):
 @app.post("/model/create")
 def createModel(name: str, type: str, params: dict):
     try:
-        loaded_models[name] = createModel(name, type, params)
-    except:
+        loaded_models[name] = manager.createModel(name, type, params)
+    except TypeError:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
