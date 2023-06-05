@@ -19,7 +19,7 @@ def show_datasets(api, ds_name):
         columns=["dataset", "pliki"],
     )
 
-    return df_list_of_datasets, df_list_of_files
+    return df_list_of_files
 
 
 def check_if_dataset_is_available(api, length, datasets_frame):
