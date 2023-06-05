@@ -70,6 +70,8 @@ def trainModel(name: str, epochs: int, eval_column_indices: List[int]):
     model_trainers[name] = trainers.NeuralNetTrainer(name)
     try:
         model_trainers[name].train(training_data = dataset, epochs = epochs)
+        model_trainers[name].save()
+
         return {'effect': 'success'}
     except:
         return {'effect': 'failure'}
