@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 ## Odpalenie programu
 EXPOSE 8081
-CMD uvicorn main_kaggle:app
+CMD uvicorn main_kaggle:app --port 8081
