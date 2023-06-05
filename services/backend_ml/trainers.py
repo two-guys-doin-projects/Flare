@@ -2,7 +2,7 @@ import torch.optim as optim
 import modelManager as manager
 import torch.nn as nn
 import torch as T
-from typing import List
+from typing import List, Tuple
 
 # TODO implement trainer
 # in the most basic state it should just:
@@ -20,14 +20,17 @@ class NeuralNetTrainer():
         self.model_name = name
         self.model = manager.importModel(name)
         self.criterion = nn.CrossEntropyLoss()
-        self.optimizer = optim.SGD(self.model.parameters(), lr = 0.001, momentum = 0.9)
-    def train(self, training_data: List[T.tensor, T.tensor], epochs: int = 2):
+        self.optimizer = optim.Adam(self.model.parameters(), lr = 0.001)
+        self.checkpoint = None
+    def train(self, training_data: List[Tuple[T.tensor, T.tensor]], epochs: int = 2):
+        self.model.train()
         for epoch in range(epochs):
+            print(f"epoch {epoch}...")
             for sample in training_data:
                 x, y = sample
-                self.optimizer.zero_grad()
                 y_hat = self.model(x)
                 self.loss = self.criterion(y_hat, y)
+                self.optimizer.zero_grad()
                 self.loss.backward()
                 self.optimizer.step()
     def save(self):
