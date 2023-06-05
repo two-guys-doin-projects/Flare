@@ -1,0 +1,18 @@
+## Obraz bazowy
+FROM continuumio/miniconda3
+
+## Stworzenie katalogu domowego
+RUN mkdir /code
+WORKDIR /code
+
+## Skopiowanie plików do naszego katalogu
+COPY [".", "/code/"]
+
+## Instalacja paczek
+RUN apt-get update
+RUN conda env create -f ml_bcknd.yml
+RUN conda activate multilearning_backend
+
+## Odpalenie programu
+EXPOSE 8082
+CMD uvicorn main:app --port 8082
