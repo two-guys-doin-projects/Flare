@@ -1,0 +1,9 @@
+wheel
+fastapi
+uvicorn
+pydantic
+torch
+numpy
+pip
+pyopenssl==19.0.0
+urllib3==1.25.7
