@@ -11,7 +11,6 @@ class neuralNet(nn.Module):
         for layer in range(param_dict['num_layers']):
             net.append(nn.Linear(param_dict['hidden_size'], param_dict['hidden_size']))
         net.append(nn.Linear(param_dict['hidden_size'], param_dict['output_size']))
-        net.append(nn.Softmax(dim=0))
         self.architechture = nn.Sequential(*net)
     def forward(self, x):
         y_hat = self.architechture(x)
