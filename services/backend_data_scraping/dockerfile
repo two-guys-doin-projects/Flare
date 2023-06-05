@@ -1,0 +1,17 @@
+## Obraz bazowy
+FROM python:3.8-bullseye
+
+## Stworzenie katalogu domowego
+RUN mkdir /code
+WORKDIR /code
+
+## Skopiowanie plików do naszego katalogu
+COPY ["./Kaggle API/", "/code/"]
+
+## Instalacja paczek
+RUN apt-get update
+RUN pip install -r requirements.txt
+
+## Odpalenie programu
+EXPOSE 8081
+CMD uvicorn main_kaggle:app --port 8081
