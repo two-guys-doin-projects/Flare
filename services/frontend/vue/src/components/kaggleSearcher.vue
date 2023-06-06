@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import {ref} from 'vue';
+import { useKaggleStore } from './kaggleStore';
+
+const store = useKaggleStore();
 
 const phrase = ref<String>();
-
 
 </script>
 
 <template>
 <div class="wrapper">
     <input v-bind="phrase" />
-    <div class="btn search-btn">Wyszukaj</div>
+    <div class="btn search-btn" @click="() => { store.search_phrase = phrase; this.$router.push('/pick');}">Wyszukaj</div>
 </div>
 </template>
 
