@@ -39,7 +39,7 @@ def show_available_datasets(index: int):
     datasets = downloaded_dataset.head(25)
     datasets = datasets.to_json(orient="records")
     parsed = json.loads(datasets)
-    return {"Zbiór": parsed}
+    return {"head": parsed}
 
 
 @app.get("/selected_columns_of_dataframe")
@@ -55,8 +55,8 @@ def send_dataset_to_ml():
     dataset_test = dataset_test.to_json(orient="records")
     parsed_training = json.loads(dataset_training)
     parsed_test = json.loads(dataset_test)
-    return {"zbiór treningowy": parsed_training,
-            "zbiór testowy": parsed_test}
+    return {"train": parsed_training,
+            "validate": parsed_test}
 
 
 def list_of_datasets(name):
