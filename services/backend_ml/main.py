@@ -71,6 +71,7 @@ def trainModel(name: str, epochs: int, eval_column_indices: Annotated[List[int],
     try:
         model_trainers[name].train(training_data = dataset, epochs = epochs)
         model_trainers[name].save()
+
         return {'effect': 'success'}
     except:
         return {'effect': 'failure'}
