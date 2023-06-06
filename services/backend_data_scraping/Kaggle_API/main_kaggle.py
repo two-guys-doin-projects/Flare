@@ -7,6 +7,7 @@ import search_datasets_kaggle
 import download_dataset_kaggle
 from typing_extensions import Annotated
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 
 data_scraping_storage = {
     'user_id': '',
@@ -17,6 +18,15 @@ data_scraping_storage = {
 
 app = FastAPI()
 
+cors_origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def read_root():
