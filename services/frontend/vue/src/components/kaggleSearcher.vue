@@ -4,13 +4,13 @@ import { useKaggleStore } from './kaggleStore';
 
 const store = useKaggleStore();
 
-const phrase = ref<String>();
+const phrase = ref('');
 
 </script>
 
 <template>
 <div class="wrapper">
-    <input v-bind="phrase" />
+    <input v-model="phrase" />
     <div class="btn search-btn" @click="() => { store.search_phrase = phrase; this.$router.push('/pick');}">Wyszukaj</div>
 </div>
 </template>
