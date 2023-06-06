@@ -1,0 +1,22 @@
+version: "3"
+services:
+  backend_ds:
+    build: ./services/backend_data_scraping/
+    ports:
+      - "8081:8081"
+    networks:
+      backend_con:
+        ipv4_address: 192.168.1.81
+  backend_ml:
+    build: ./services/backend_ml/
+    ports:
+      - "8082:8082"
+    networks:
+      backend_con:
+        ipv4_address: 192.168.1.82
+networks:
+  backend_con:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.1.0/24"
