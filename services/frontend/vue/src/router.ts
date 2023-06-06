@@ -6,6 +6,7 @@ import kaggleSearcher from './components/kaggleSearcher.vue'
 import datasetPicker from './components/datasetPicker.vue'
 import datasetCustomizer from './components/datasetCustomizer.vue'
 import datasetWrapper from './components/datasetWrapper.vue'
+import datasetShaper from './components/datasetShaper.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,7 +22,8 @@ const router = createRouter({
             [
                 {path: "", component: kaggleSearcher},
                 {path: "/pick", component: datasetPicker},
-                {path: "/preview", component: datasetCustomizer}
+                {path: "/preview", component: datasetCustomizer},
+                {path: "/mark_eval", component: datasetShaper}
             ]}
     ]
 })
