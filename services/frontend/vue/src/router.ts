@@ -7,6 +7,7 @@ import datasetPicker from './components/datasetPicker.vue'
 import datasetCustomizer from './components/datasetCustomizer.vue'
 import datasetWrapper from './components/datasetWrapper.vue'
 import datasetShaper from './components/datasetShaper.vue'
+import predictionRetriever from './components/predictionRetriever.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -24,7 +25,8 @@ const router = createRouter({
                 {path: "/pick", component: datasetPicker},
                 {path: "/preview", component: datasetCustomizer},
                 {path: "/mark_eval", component: datasetShaper}
-            ]}
+            ]},
+        {path: "/predict", component: predictionRetriever}
     ]
 })
 
