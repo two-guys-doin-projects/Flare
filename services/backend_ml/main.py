@@ -11,9 +11,9 @@ from torch import Tensor
 
 #dev flags
 
-DS_BACKEND_ADRESS = 'http://localhost:8081'
+DS_BACKEND_ADRESS = 'http://192.168.1.81:8081'
 
-enforce_cors = False
+enforce_cors = True
 
 loaded_models = {}
 model_trainers = {}
@@ -33,7 +33,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI()
 
-cors_origins = ["http://localhost", "http://localhost:8000"]
+cors_origins = ["*"]
 
 if enforce_cors:
     app.add_middleware(
