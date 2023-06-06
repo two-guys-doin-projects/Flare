@@ -2,7 +2,7 @@
     <div class="row">
         <div class="column">
             <RouterLink to="/">Strona główna</RouterLink><br>
-            <RouterLink to="/dataset_lookup">Zbiór danych...</RouterLink><br>
+            <RouterLink to="/dataset">Zbiór danych...</RouterLink><br>
         </div>
     </div>
 </template>
