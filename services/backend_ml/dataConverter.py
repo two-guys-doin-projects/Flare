@@ -12,6 +12,10 @@ def convertToDataset(data: str, eval_column_indices: List[int]):
         (eval_columns.append(columns[column_index]) 
             if column_index in eval_column_indices 
             else train_columns.append(columns[column_index]))
+        print("eval column indices")
+        print(eval_columns)
+        print("train column indices")
+        print(train_columns)
     for row in data['train']:
         inputs = [float(row[column]) for column in train_columns]
         outputs = [float(row[column]) for column in eval_columns]
