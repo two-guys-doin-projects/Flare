@@ -10,29 +10,15 @@ const datasetList = ref(null);
 
 onMounted(() => {data().get(`/show_available_datasets?name=${store.search_phrase}`).then(response => datasetList.value = response.data)})
 
-function selectDataset(dataset: any){
-    for(let [index, value] of datasetList.entries()){
-        if (value === dataset){
-            store.selected_dataset_index = index
-            return
-        }
-    }
-    this.$router.push("/dataset_preview")
-}
 </script>
 
 <template>
     <div v-if="datasetList != null">
             <div class="panel">    
-                <div v-for="dataset in datasetList" class="list-position" @click="() => { 
-                    for(let [index, value] of datasetList.entries()){
-                        if (value === dataset){
-                            store.selected_dataset_index = index;
-                            return;
-                        }
-                    }
+                <div v-for="(dataset, index) in datasetList" class="list-position" @click="() => { 
+                    store.selected_dataset_index = index;
                     this.$router.push('preview')
-                        }">
+                    }">
                     <p>{{ dataset.ref }}</p>
                     <p>{{ dataset.subtitle }}</p>
                 </div>
