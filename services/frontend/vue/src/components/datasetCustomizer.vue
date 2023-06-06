@@ -6,16 +6,21 @@ import data from '../api/data_scraping';
 
 const store = useKaggleStore();
 
-const datasetHead = ref({});
+const datasetHead = ref([{}]);
+const headings = ref()
+onMounted(() => {data().get(`/show_dataframe?index=${store.selected_dataset_index}`).then((response) => {datasetHead.value = response.data.head; headings.value = Object.keys(datasetHead.value[0])})})
 
-onMounted(() => {data().get(`/show_dataframe?index=1`).then((response) => {datasetHead.value = response.data.head})})
+
 
 </script>
 
 <template>
-    {{ store.selected_dataset_index }}
+
 <div v-if="datasetHead != null">
     <table>
+        <tr>
+            <th v-for="(heading, index) in headings"> {{ heading }} </th>
+        </tr>
         <tr v-for="row in datasetHead">
             <th v-for="entry in row"> {{ entry }} </th>
         </tr>
@@ -23,3 +28,9 @@ onMounted(() => {data().get(`/show_dataframe?index=1`).then((response) => {datas
 </div>
 
 </template>
+
+<style scoped>
+table {
+    background-color: lightgray;
+}
+</style>
