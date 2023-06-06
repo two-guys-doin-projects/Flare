@@ -1,23 +1,29 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import {useModelStore} from "./model.ts";
+import ml from "../api/ml";
+import {ref, onMounted} from 'vue';
 
 const store = useModelStore();
 
-const models = [
-    {name: 'neural1', type: 'neural'},
-    {name: 'neural2', type: 'neural'}
-]
+const modelList = ref<String>(null);
 
+onMounted(() => {ml().get('/models/list').then(response => modelList.value = response.data)})
+
+function selectModel(name: String){
+    store.setName(name);
+    ml().post(`/model/select?model_name=${name}`)
+}
 </script>
 
 <template>
-    <div class="panel">    
-        <div v-for="model in models" class="list-position" @click="() => store.setName(model.name)">
-            <p>{{ model.name }}</p>
-            <p>{{ model.type }}</p>
+    <div v-if="modelList != null">
+            <div class="panel">    
+                <div v-for="model in modelList" class="list-position" @click="() => selectModel(model)">
+                    <p>{{ model }}</p>
+                </div>
+                <div class="btn add-button"> <RouterLink to="/create_model"> + </RouterLink></div>
         </div>
-        <div class="btn add-button"> <RouterLink to="/create_model"> + </RouterLink></div>
     </div>
 </template>
 
