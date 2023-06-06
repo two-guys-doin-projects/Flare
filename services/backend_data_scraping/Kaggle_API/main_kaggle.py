@@ -89,13 +89,12 @@ def cut_dataset(index: list):
     size = len(data_scraping_storage['downloaded_dataset'])
     print(f"rozmiar to: {size}")
     df = pd.DataFrame(data_scraping_storage['downloaded_dataset'])
-    df_after_cut = df.drop(df.columns[index], axis=1)
+    df_after_cut = df.drop(df.columns[index], axis=1).dropna()
     dataset_training = df_after_cut.iloc[math.floor(size/4):, :]
     dataset_test = df_after_cut.iloc[:math.floor(size/4), :]
     print(f"rozmiar to: {len(dataset_training)}")
     print(f"rozmiar to: {len(dataset_test)}")
     return dataset_training, dataset_test
-
 
 
 
