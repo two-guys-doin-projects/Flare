@@ -6,7 +6,7 @@ RUN mkdir /code
 WORKDIR /code
 
 ## Skopiowanie plików do naszego katalogu
-COPY ["./Kaggle API/", "/code/"]
+COPY ["./Kaggle_API/", "/code/"]
 
 ## Instalacja paczek
 RUN apt-get update
