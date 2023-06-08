@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useModelStore } from './model';
 import ml from '../api/ml';
 
@@ -24,7 +24,7 @@ function getPrediction(){
         <input v-for="key in Array.from(Array(data[0]).keys())" :id="String(key)" v-model="input[key]"/>
     </div>
     <div v-if="prediction">
-        <h1>Wyjście modelu</h1>
+        <h1>Prognoza modelu</h1>
         <p v-for="key in Array.from(Array(data[1]).keys())"> {{ prediction.result[key] }} </p>
     </div>
     <div class="btn add-button" @click="getPrediction"> Wywołaj prognozę </div>
