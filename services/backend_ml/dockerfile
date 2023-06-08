@@ -1,0 +1,22 @@
+## Obraz bazowy
+FROM python:3.9-bullseye
+
+## Stworzenie katalogu domowego
+RUN mkdir /code
+WORKDIR /code
+
+COPY ["./requirements.txt", "/code/requirements.txt"]
+
+## Instalacja paczek
+RUN apt-get update
+RUN apt-get install python3-pip --yes
+
+RUN pip3 install -r requirements.txt
+RUN pip3 install requests
+
+## Skopiowanie plików do naszego katalogu
+COPY [".", "/code/"]
+
+## Odpalenie programu
+EXPOSE 8082
+CMD python3 -m uvicorn main:app --port 8082 --host 0.0.0.0
