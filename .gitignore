@@ -132,3 +132,5 @@ dmypy.json
 # storage directory
 
 usrModels/
+#Phillip IDE files
+.idea/
