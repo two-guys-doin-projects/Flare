@@ -79,7 +79,9 @@ def listAvailableModels(model_dict: dict, saved_models_path: str = "") -> List[s
     - `saved_models_path`: ścieżka do katalogu z zapisanymi modelami. Niewymagana.
     """
     loaded_models = list(model_dict.keys())
-    saved_models = os.listdir(saved_models_path) if saved_models_path else list()
+    if not saved_models_path or not os.path.isdir(saved_models_path):
+        return []
+    saved_models = os.listdir(saved_models_path)
     saved_models = list(map(trimExtension, saved_models))
     #https://www.digitalocean.com/community/tutorials/get-unique-values-from-a-list-in-python#1-python-set-to-get-unique-values-from-a-list
     all_models = list(set(loaded_models + saved_models))
