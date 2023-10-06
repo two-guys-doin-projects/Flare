@@ -1,4 +1,4 @@
-# MultiLearning
+# Flare
 # Zarys projektu
 
 ![Zarys projektu zdjęcie](images/zarys.png)
