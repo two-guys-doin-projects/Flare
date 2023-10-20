@@ -1,0 +1,12 @@
+.main--content{
+    align-items: center;
+    background-color: #FFFFFF;
+    height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    color: #242424;
+    height: 800px;
+  }
