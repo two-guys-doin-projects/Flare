@@ -4,7 +4,7 @@ import MainContent from '../MainContent';
 import './UserPage.css'
 
 function UserPage() {
-    const [selectedPage, setSelectedPage] = useState('model');
+    const [selectedPage, setSelectedPage] = useState('home');
   
     const changePage = (page) => {
       setSelectedPage(page);
@@ -14,6 +14,11 @@ function UserPage() {
       <>
         <nav className='user--menu'>
             <ul>
+                <li>
+                    <Link className={"link-styles"} to="/user/home" onClick={() => changePage('home')}>
+                    Home
+                    </Link>
+                </li>
                 <li>
                     <Link className={"link-styles"} to="/user/model" onClick={() => changePage('model')}>
                     Model

@@ -3,11 +3,13 @@ import ModelPage from './UserPage/ModelPage/ModelPage';
 import DatasetPage from './UserPage/DatasetPage/DatasetPage';
 import TrainingPage from './UserPage/TrainingPage/TrainingPage';
 import PredictionPage from './UserPage/PredictionPage/PredictionPage';
+import HomePage from './HomePage/HomePage'
 import './MainContent.css'
 
 function MainContent({ selectedPage }) {
   return (
     <div className="main--content">
+      {selectedPage === 'home' && <HomePage />}
       {selectedPage === 'model' && <ModelPage />}
       {selectedPage === 'dataset' && <DatasetPage />}
       {selectedPage === 'training' && <TrainingPage />}

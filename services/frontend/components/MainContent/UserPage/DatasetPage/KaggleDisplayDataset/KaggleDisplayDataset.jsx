@@ -10,7 +10,7 @@ function KaggleDisplayDataset({
   return <>
                     <div className="user-content">
                         <input type="text" placeholder="Dataset name" onChange={handleChange} name="datasetName" value={datasetName} />
-                        <button onClick={handleClick}>Add Data</button>
+                        <button onClick={handleClick}>Wyszukaj</button>
                     </div>
                     <h1>Wyszukaj coś</h1>
                     <div className="tbl-header">

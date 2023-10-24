@@ -7,8 +7,8 @@ function NavBar() {
             <img src={logo} />
             <h3>Flare</h3>
             <div className='main--nav--buttons'>
-                <button>asd</button>
-                <button>asd</button>
+                <button>Zaloguj się</button>
+                <button>Zarejestruj się</button>
             </div>
         </nav>
     )

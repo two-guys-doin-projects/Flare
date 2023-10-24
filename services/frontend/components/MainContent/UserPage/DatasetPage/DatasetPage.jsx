@@ -40,9 +40,6 @@ function DatasetPage() {
         </tr>
     );
 
-
-      
-
     return (
         <>
             {datasetColumns.head.length === 0 ? (
