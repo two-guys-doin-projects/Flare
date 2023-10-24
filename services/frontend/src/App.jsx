@@ -7,7 +7,7 @@ import DatasetPage from "../components/MainContent/UserPage/DatasetPage/DatasetP
 import TrainingPage from "../components/MainContent/UserPage/TrainingPage/TrainingPage";
 import PredictionPage from "../components/MainContent/UserPage/PredictionPage/PredictionPage";
 import UserPage from "../components/MainContent/UserPage/UserPage";
-
+import HomePage from "../components/MainContent/HomePage/HomePage"
 function App() {
   return (
     <>
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/user" element={<UserPage />}>
+            <Route path="home" element={<HomePage />} />
             <Route path="model" element={<ModelPage />} />
             <Route path="dataset" element={<DatasetPage />} />
             <Route path="training" element={<TrainingPage />} />
