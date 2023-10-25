@@ -31,15 +31,13 @@ function ModelPage(){
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
                         <Tab label="Sieć neuronowa" value="1" />
-                        <Tab label="Inny model" value="2" />
-                        <Tab label="Inny model" value="3" />
+                        
                     </TabList>
                     </Box>
                     <TabPanel value="1">
                         <AddNewModel />
                     </TabPanel>
-                    <TabPanel value="2">Item Two</TabPanel>
-                    <TabPanel value="3">Item Three</TabPanel>
+                    
                 </TabContext>
             </Box>
             

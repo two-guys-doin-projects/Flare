@@ -42,48 +42,48 @@ function AddNewModel() {
     }
     return (
         <form className='form--nn' onSubmit={handleSubmit}>
-  <label htmlFor="modelName">Nazwa modelu</label>
-  <input
-    type="text"
-    placeholder="Nazwa modelu"
-    name="modelName"
-    onChange={handleChange}
-    value={createModelForm.modelName}
-  />
-  <label htmlFor="inputSize">Wielkość wejścia</label>
-  <input
-    type="number"
-    placeholder="Wielkość wejścia"
-    name="inputSize"
-    onChange={handleChange}
-    value={createModelForm.inputSize}
-  />
-  <label htmlFor="hiddenSize">Ilość warstw ukrytych</label>
-  <input
-    type="number"
-    placeholder="Ilość warstw ukrytych"
-    name="hiddenSize"
-    onChange={handleChange}
-    value={createModelForm.hiddenSize}
-  />
-  <label htmlFor="numLayers">Ilość warstw</label>
-  <input
-    type="number"
-    placeholder="Ilość warstw"
-    name="numLayers"
-    onChange={handleChange}
-    value={createModelForm.numLayers}
-  />
-  <label htmlFor="outputSize">Wielkość wyjścia</label>
-  <input
-    type="number"
-    placeholder="Wielkość wyjścia"
-    name="outputSize"
-    onChange={handleChange}
-    value={createModelForm.outputSize}
-  />
-  <button type="submit">Dodaj model</button>
-</form>
+            <label htmlFor="modelName">Nazwa modelu</label>
+            <input
+                type="text"
+                placeholder="Nazwa modelu"
+                name="modelName"
+                onChange={handleChange}
+                value={createModelForm.modelName}
+            />
+            <label htmlFor="inputSize">Wielkość wejścia</label>
+            <input
+                type="number"
+                placeholder="Wielkość wejścia"
+                name="inputSize"
+                onChange={handleChange}
+                value={createModelForm.inputSize}
+            />
+            <label htmlFor="hiddenSize">Ilość warstw ukrytych</label>
+            <input
+                type="number"
+                placeholder="Ilość warstw ukrytych"
+                name="hiddenSize"
+                onChange={handleChange}
+                value={createModelForm.hiddenSize}
+            />
+            <label htmlFor="numLayers">Ilość warstw</label>
+            <input
+                type="number"
+                placeholder="Ilość warstw"
+                name="numLayers"
+                onChange={handleChange}
+                value={createModelForm.numLayers}
+            />
+            <label htmlFor="outputSize">Wielkość wyjścia</label>
+            <input
+                type="number"
+                placeholder="Wielkość wyjścia"
+                name="outputSize"
+                onChange={handleChange}
+                value={createModelForm.outputSize}
+            />
+            <button type="submit">Dodaj model</button>
+        </form>
 
     )
 }

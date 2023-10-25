@@ -1,8 +1,7 @@
 footer {
     display: flex;
     align-items: center;
-    background-color: #FFFFFF;
-    height: 50px;
+    background-color: #FFFFFF; 
     padding: 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
     border-radius: 10px;
@@ -10,4 +9,14 @@ footer {
     margin: auto;
     margin-top: 10px;
     color: #242424;
+}
+.footer--pearson {
+    width: 100%;
+    
+}
+
+.footer--pearson > img {
+    border-radius: 50%;
+    width: 20%;
+    float: left;
 }
