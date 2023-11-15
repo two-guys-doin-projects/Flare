@@ -71,9 +71,10 @@ def send_dataset_to_ml():
 
 def list_of_datasets(name):
     kaggle_api = init_kaggle.kaggle_api_authentication()
-    data_scraping_storage['datasetname'] = name
+    data_scraping_storage['dataset_name'] = name
+    print('cos: ', data_scraping_storage['dataset_name'])
     datasets = search_datasets_kaggle.show_datasets(
-        kaggle_api, data_scraping_storage['datasetname']
+        kaggle_api, data_scraping_storage['dataset_name']
     )
     return datasets
 
@@ -81,6 +82,7 @@ def list_of_datasets(name):
 def download_dataset(index):
     kaggle_api = init_kaggle.kaggle_api_authentication()
     datasets = list_of_datasets(data_scraping_storage['dataset_name'])
+    print(datasets)
     data_scraping_storage['downloaded_dataset'] = download_dataset_kaggle.download_dataset(kaggle_api, datasets, index)
     return data_scraping_storage['downloaded_dataset']
 
@@ -97,5 +99,8 @@ def cut_dataset(index: list):
     return dataset_training, dataset_test
 
 
+@app.get("/storage")
+def check_storage():
+    return data_scraping_storage
 
 
