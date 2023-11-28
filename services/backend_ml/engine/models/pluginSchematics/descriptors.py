@@ -1,3 +1,13 @@
+"""
+This module defines parameter descriptors - your model's `describe_params` method should use them to document what parameter types and values are needed to create the model.
+
+There are four types of parameters defined here:
+- `IntRange` for integer values in certain range,
+- `Text` for text,
+- `Int` for integers with unlimited range,
+- `ChooseOne` for values from a concrete list.
+"""
+
 from abc import ABC, abstractmethod
 import jsons
 
