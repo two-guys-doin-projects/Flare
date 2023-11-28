@@ -19,7 +19,7 @@ class Text(Descriptor):
         self.description = description
 
 class Int(Descriptor):
-    def __init__(self, description: str, range: list = IntRange):
+    def __init__(self, description: str):
         self.type = "int"
         self.description = description
 
