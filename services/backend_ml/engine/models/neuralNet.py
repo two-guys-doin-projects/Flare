@@ -1,12 +1,12 @@
-from pluginSchematics import base, descriptors
+from .pluginSchematics import base, descriptors
 
 activation_functions = [
     "ReLU", "Sigmoida", "Softmax", "Log Loss"
 ]
 
 class PluggableModel(base.BaseModel):
-    
-    def dictionary_name():
+
+    def dictionary_name(self):
         return "Sieć neuronowa"
     
     def create(self, hyperparameters):
