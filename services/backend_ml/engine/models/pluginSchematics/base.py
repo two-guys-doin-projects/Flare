@@ -1,6 +1,6 @@
 """
 This module contains a definition for:
-- Base pluggable model - your plugin's model should inherit from this class,
+- Base pluggable model - `BaseModel` - your plugin's model should inherit from this class,
 - Model data object that defines saveable model state.
 """
 
@@ -15,7 +15,7 @@ class ModelData(TypedDict):
     modelName: str
     params: dict
     checkpoint: any
-
+#TODO add abstract logic for training and inference
 class BaseModel(metaclass = ABCMeta):
 
     @abstractproperty
@@ -53,6 +53,27 @@ class BaseModel(metaclass = ABCMeta):
 
         The expected return value is a dictionary, where keys are parameter names and their values are `Descriptor`s.
         """
+        pass
+
+    @abstractmethod
+    def describe_train_data():
+        """
+        A method for describing training dataset sample.
+        """
+        pass
+
+    @abstractmethod
+    def describe_inference_data():
+        """
+        A method to describe model's inference mode input.
+        """
+        pass
 
     def get_param_object(self):
         return json_export(self.describe_params())
+    
+    def get_train_data_description(self):
+        return json_export(self.describe_train_data())
+    
+    def get_inference_data_description(self):
+        return json_export(self.get_inference_data_description())
