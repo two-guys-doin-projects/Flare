@@ -14,7 +14,7 @@ def get_pluggable_model_modules():
 
 def get_pluggable_models():
     """
-    Returns a list of models with defined names.
+    Returns a list of pluggable model modules with names defined in them.
     """
     return {
         module.PluggableModel().dictionary_name() : module for module in get_pluggable_model_modules()
