@@ -7,7 +7,7 @@ This module contains a definition for:
 from abc import ABCMeta, abstractmethod, abstractproperty
 from typing import TypedDict
 from jsons import dump as json_export
-from descriptors import Descriptor
+from .descriptors import Descriptor
 from typing import Dict
 
 
