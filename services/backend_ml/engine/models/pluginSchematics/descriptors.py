@@ -1,11 +1,12 @@
 """
-This module defines parameter descriptors - your model's `describe_params` method should use them to document what parameter types and values are needed to create the model.
+This module defines descriptors - use them in description methods to create a dictionary, that contains all the neccessary fields needed for your model to function.
 
-There are four types of parameters defined here:
+All available descriptors:
 - `IntRange` for integer values in certain range,
 - `Text` for text,
 - `Int` for integers with unlimited range,
-- `ChooseOne` for values from a concrete list.
+- `ChooseOne` for values from a concrete list,
+- `Image` for image-like input.
 """
 
 from abc import ABC, abstractmethod
@@ -61,3 +62,12 @@ class ChooseOne(Descriptor):
         self.description = description
         self.type = "choose_one"
         self.possible_values = possible_values
+
+class Image(Descriptor):
+    def __init__(self, width, height, channels=3):
+        """
+        Describes an image-like input.
+        """
+        self.width = width
+        self.height = height
+        self.channels = channels
