@@ -6,7 +6,8 @@ All available descriptors:
 - `Text` for text,
 - `Int` for integers with unlimited range,
 - `ChooseOne` for values from a concrete list,
-- `Image` for image-like input.
+- `Image` for image-like input,
+- `List` for list of inputs.
 """
 
 from abc import ABC, abstractmethod
@@ -72,3 +73,10 @@ class Image(Descriptor):
         self.width = round(width)
         self.height = round(height)
         self.channels = round(channels)
+
+class List(Descriptor):
+    def __init__(self, values: List[Descriptor]):
+        """
+        Describes a list of expected values.
+        """
+        self.values = values
