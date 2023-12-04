@@ -10,6 +10,7 @@ All available descriptors:
 """
 
 from abc import ABC, abstractmethod
+from typing import List
 import jsons
 
 class Descriptor(ABC):
@@ -64,10 +65,10 @@ class ChooseOne(Descriptor):
         self.possible_values = possible_values
 
 class Image(Descriptor):
-    def __init__(self, width, height, channels=3):
+    def __init__(self, width: int, height: int, channels: int =3):
         """
         Describes an image-like input.
         """
-        self.width = width
-        self.height = height
-        self.channels = channels
+        self.width = round(width)
+        self.height = round(height)
+        self.channels = round(channels)
