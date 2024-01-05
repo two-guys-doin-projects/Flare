@@ -1,13 +1,13 @@
 import API from "./DataScrapingAPI";
 
-export const showAvailableDatasets = (name) =>
+export const showAvailableDatasets = (name) => 
 {
-    API.get(`/show_available_datasets?name=${name}`)
+    return API.get(`/show_available_datasets?name=${name}`);
 }
 
 export const showDataframe = (index) =>
 {
-    API.get(`show_dataframe?index=${index}`)
+    return API.get(`show_dataframe?index=${index}`)
 }
 
 export const selectedColumnsOfDataframe = (index) =>
