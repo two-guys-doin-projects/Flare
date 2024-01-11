@@ -22,6 +22,7 @@ export default function Dataset() {
             console.error("Error fetching datasets:", error);
         } finally {
             setSearching(false);
+            setDownloadedDatasets([])
         }
     };
 
@@ -32,13 +33,13 @@ export default function Dataset() {
             console.log("start!!! downlaod dataset on index: ", clickedDataset);
             const datasets = await showDataframe(clickedDataset);
             const mapKaggleColumnsName = datasets.data.head;
-            const columnsName = Object.keys(mapKaggleColumnsName[0])[0].split(';');
+            const columnsName = Object.keys(mapKaggleColumnsName[0]);
             const dataColumnData = mapKaggleColumnsName.map((item) => Object.values(item));
             setDownloadedColumnsName(columnsName);
             setDownloadedDatasets(dataColumnData);
             console.log("finish!!! downlaod data is: ", datasets.data.head);
-            console.log("finish!!! downlaod data is: ", columnsName);
-            console.log("finish!!! downlaod data is: ", dataColumnData);
+            console.log("finish!!! names data is: ", columnsName);
+            console.log("finish!!! data is: ", dataColumnData);
         } catch (error) {
             console.error("Error fetching datasets:", error);
         } finally {
