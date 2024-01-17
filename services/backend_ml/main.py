@@ -40,4 +40,4 @@ def list_available_models():
 
 @app.get("/model/create")
 def get_architecture_params(model_name: str):
-    return available_architectures[model_name].PluggableModel().get_param_object()
+    return available_architectures[model_name].PluggableModel().get_param_object
