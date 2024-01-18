@@ -1,81 +1,105 @@
-# Strona tytułowa
+# Strona tytułowa  
+  
+**Projekt przedmiotu Aplikacje internetowe, Bezpieczeństwo i ochrona danych, wprowadzenie do języka python**  
+  
+Grupa P5  
+  
+Krystian Urban  
+Filip Walkowicz  
+  
+# Wstęp  
+  
+Tematem projektu jest stworzenie serwisu pozwalającego użytkownikowi tworzyć nowe modele uczenia maszynowego, trenować oraz wykonywać na nich predykcje.   Do trenowania modeli dostarczamy użytkownikowi dużo swobody w doborze danych, sam wybiera zbiór danych oraz dopasowuje go pod trening.
+  
+# Opis architektury serwisu  
+  
+Strona back-endu podzielona jest na trzy mikroserwisy:  
+  
+- ML - służący do zarządzania, trenowania i używania modeli,  
+- Data scraping - służący do pobierania i przetwarzania zbiorów danych.  
+- Uwierzytelnianie - służący do logowania do serwisu
+  
+![Zarys projektu zdjęcie](images/Zarys.png)
+  
+  
+# Opis pojęć  
+  
+## Architektura  
+  
+### Mikroserwis  
+  
+Mikroserwis to odizolowana część aplikacji internetowej, która działa jako samodzielna jednostka. Każdy mikroserwis ma swoją specyficzną funkcję i komunikuje się z innymi mikroserwisami poprzez udostępnione interfejsy. Taka architektura umożliwia łatwiejsze zarządzanie, skalowanie i rozwijanie systemu.
+  
+### Backend  
+  
+Backend to część aplikacji internetowej odpowiedzialna za obsługę zapytań wysłanych przez użytkownika, przetwarzanie logiki biznesowej, obsługę bazy danych i inne zadania związane z logiką serwerową.
+  
+### REST  
+  
+REST (Representational State Transfer) to styl architektoniczny, który definiuje zasady tworzenia rozproszonych systemów informatycznych. W kontekście aplikacji internetowych, REST opiera się na przesyłaniu danych między klientem a serwerem za pomocą standardowych protokołów komunikacyjnych, takich jak HTTP. Komunikacja oparta na REST jest oparta na zasobach, które są identyfikowane za pomocą URI, a operacje na tych zasobach są określone przez standardowe metody HTTP (GET, POST, PUT, DELETE).
+  
+## Technologie  
+  
+### FastAPI  
+  
+FastAPI to biblioteka w języku Python, która umożliwia łatwe tworzenie REST API. Charakteryzuje się szybkością działania i automatyczną generacją interfejsu API na podstawie adnotacji w kodzie.
+  
+### PyTorch  
+  
+PyTorch to biblioteka do uczenia maszynowego w języku Python. Jest wykorzystywana do tworzenia, trenowania i wdrażania modeli uczenia maszynowego. PyTorch oferuje elastyczność i wydajność, zwłaszcza w kontekście głębokich sieci neuronowych.
+  
+### Requests  
+  
+Biblioteka `requests` w języku Python służy do wykonywania zapytań HTTP/HTTPS. Pozwala na łatwe komunikowanie się z innymi serwerami poprzez protokół HTTP.
 
-**Projekt przedmiotu Wstęp do programowania w języku Python**
+### Axios
 
-Grupa P5
+Axios to biblioteka w języku JavaScript, służąca do wykonywania zapytań HTTP w środowisku przeglądarki lub na platformie Node.js. Jest powszechnie używana w projektach frontendowych.
+### Redux
 
-Krystian Urban
-Filip Walkowicz
+Redux to biblioteka zarządzania stanem w aplikacjach JavaScript. Jest często stosowana w połączeniu z biblioteką React do zarządzania globalnym stanem aplikacji.
 
-# Wstęp
+### React
 
-Tematem projektu jest system back-end serwisu pozwalającego na trening i hostowanie modeli uczenia maszynowego.
+React to biblioteka JavaScript do budowania interfejsów użytkownika. Jest często stosowana w aplikacjach jednostronicowych (SPA) do dynamicznego renderowania widoków.
 
-# Opis architektury serwisu
+### Vite
 
-Strona back-endu podzielona jest na dwa mikroserwisy:
+Vite to narzędzie do budowania aplikacji internetowych, które umożliwia szybkie działanie podczas procesu deweloperskiego. Jest często wykorzystywane z frameworkiem Vue.js, React lub innymi bibliotekami frontendowymi.
 
-- ML - służący do zarządzania, trenowania i używania modeli,
-- Data scraping - służący do pobierania i przetwarzania zbiorów danych.
+### Tailwind
 
-![image](https://github.com/two-guys-doin-projects/Flare/assets/62908964/c92708ec-a523-41e3-b1a2-520e3c8e2e0f)
-
-
-# Opis pojęć
-
-## Architektura
-
-### Mikroserwis
-
-Odizolowana część aplikacji internetowej, z którą komunikacja odbywa się za pomocą udostępnionego przez nią interfejsu.
-
-### Backend
-
-Część aplikacji internetowej, której zadaniem jest obsługa zapytań wysłanych przez użytkownika, obsługę bazy danych etc.
-
-### REST
-
-TODO
-
-## Technologie
-
-### FastAPI
-
-Biblioteka pozwalająca na łatwe tworzenie REST API w języku Python.
-
-### PyTorch
-
-Wersja biblioteki *torch* służącej do tworzenia modeli uczenia maszynowego zaimplementowana w języku Python.
-
-### requests
-
-Biblioteka służąca do wykonywania zapytań HTTP/HTTPS.
-
-# Założenia
-
-## Ogólne
-
-Cały serwis powinien udostępniać użytkownikowi swoją funkcjonalność po autoryzacji przy pomocy osobnej usługi.
-
-## ML
-
-Serwis powinien pozwalać na tworzenie, zapisywanie, wczytywanie i trening modeli uczenia maszynowego o zdefiniowanej ogólnej strukturze:
-
-- sieć neuronowa,
-- konwolucyjna sieć neuronowa,
-- modele bezpośrednio zaimplementowane w bibliotece *PyTorch*.
-
-Trening powinien odbywać się przy pomocy zbioru danych pobranego z mikroserwisu Data Scraping.
-
-## Data Scraping
-
-Serwis powinien pozwalać na pobieranie zbiorów danych z serwisu Kaggle oraz prostą modyfikację ich poprzez wycięcie kolumn i zaznaczenie podziału kolumn na wejściowe/wyjściowe.
-
-# Wykonanie
-
-## ML
-
-Mikroserwis został wykonany jako serwis REST API przy pomocy biblioteki FastAPI. Modele uczenia maszynowego obsługiwane przez serwis są reprezentowane przez klasę `manageableModel` rozszerzające klasę `torch.nn.Module`. Zawiera ona metody zapisu i wczytywania modeli zapisanych jako zbiór plików:
-
-- konfiguracyjnego(w formacie JSON),
+Tailwind CSS to nowoczesny framework CSS, który umożliwia budowanie interfejsów użytkownika poprzez definiowanie klas bezpośrednio w kodzie HTML. W przeciwieństwie do tradycyjnych predefiniowanych stylów, Tailwind pozwala na elastyczne dostosowywanie wyglądu elementów poprzez kombinowanie klas.
+  
+# Założenia  
+  
+## Ogólne  
+  
+Cały serwis powinien udostępniać użytkownikowi swoją funkcjonalność po autoryzacji przy pomocy osobnej usługi.  
+  
+## ML  
+  
+Serwis powinien pozwalać na tworzenie, zapisywanie, wczytywanie i trening modeli uczenia maszynowego o zdefiniowanej ogólnej strukturze:  
+  
+- sieć neuronowa,  
+- konwolucyjna sieć neuronowa,  
+- modele bezpośrednio zaimplementowane w bibliotece *PyTorch*.  
+  
+Trening powinien odbywać się przy pomocy zbioru danych pobranego z mikroserwisu Data Scraping.  
+  
+## Data Scraping  
+  
+Serwis powinien pozwalać na pobieranie zbiorów danych z serwisu Kaggle oraz prostą modyfikację ich poprzez wycięcie kolumn i zaznaczenie podziału kolumn na wejściowe/wyjściowe.  
+  
+# Wykonanie  
+  
+## ML  
+  
+Mikroserwis został wykonany jako serwis REST API przy pomocy biblioteki FastAPI. Modele uczenia maszynowego obsługiwane przez serwis są reprezentowane przez klasę `manageableModel` rozszerzające klasę `torch.nn.Module`. Zawiera ona metody zapisu i wczytywania modeli zapisanych jako zbiór plików:  
+  
+- konfiguracyjnego(w formacie JSON),  
 - stanu(w formacie obsługiwanym przez *torch*).
+
+# Konteneryzacja
+
+# Uruchamianie aplikacji
