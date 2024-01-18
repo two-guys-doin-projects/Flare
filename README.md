@@ -91,15 +91,50 @@ Trening powinien odbywać się przy pomocy zbioru danych pobranego z mikroserwis
   
 Serwis powinien pozwalać na pobieranie zbiorów danych z serwisu Kaggle oraz prostą modyfikację ich poprzez wycięcie kolumn i zaznaczenie podziału kolumn na wejściowe/wyjściowe.  
   
+## Uwierzytelnianie 
+
+## Frontend
+
+Frontend powinien dostarczyć intuicyjny interfejs użytkownika umożliwiający korzystanie z funkcji serwisu. Interakcje powinny być przyjazne i łatwe do zrozumienia.
+
+### Strona główna
+ - Opis serwisu
+ - Logowanie
+
+### Zarządzanie modelem
+- Tworzenie nowego modelu
+- Przeglądanie dostępnych modeli
+
+### Pobieranie danych
+- Pobieranie danych z Kaggle
+- Modyfikacja pobranych danych
+
 # Wykonanie  
   
 ## ML  
   
-Mikroserwis został wykonany jako serwis REST API przy pomocy biblioteki FastAPI. Modele uczenia maszynowego obsługiwane przez serwis są reprezentowane przez klasę `manageableModel` rozszerzające klasę `torch.nn.Module`. Zawiera ona metody zapisu i wczytywania modeli zapisanych jako zbiór plików:  
+Mikroserwis został wykonany jako serwis REST API przy pomocy biblioteki FastAPI. 
+Modele uczenia maszynowego obsługiwane przez serwis są reprezentowane przez klasę `manageableModel` rozszerzające klasę `torch.nn.Module`. Zawiera ona metody zapisu i wczytywania modeli zapisanych jako zbiór plików:  
   
 - konfiguracyjnego(w formacie JSON),  
 - stanu(w formacie obsługiwanym przez *torch*).
 
 # Konteneryzacja
+## Docker
+
+Docker to narzędzie służące do konteneryzacji aplikacji, czyli pakowania jej w izolowany kontener, który zawiera wszystko, co potrzebne do jej uruchomienia - kod źródłowy, zależności, biblioteki, środowisko uruchomieniowe. Kontenery Docker są przenośne i mogą działać na dowolnym systemie obsługującym Docker.
 
 # Uruchamianie aplikacji
+
+## Budowanie obrazów
+
+Aby zbudować obrazy dla każdej usługi, możemy użyć komendy:
+```cmd
+sudo docker compose build
+```
+## Uruchamianie aplikacji
+
+Aby uruchomić aplikację, użyj komendy:
+```cmd
+sudo docker compose up
+```
