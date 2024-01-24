@@ -42,7 +42,7 @@ REST (Representational State Transfer) to styl architektoniczny, który definiuj
   
 ### FastAPI  
   
-FastAPI to biblioteka w języku Python, która umożliwia łatwe tworzenie REST API. Charakteryzuje się szybkością działania i automatyczną generacją interfejsu API na podstawie adnotacji w kodzie.
+FastAPI to framework języka Python, która umożliwia łatwe tworzenie REST API. Charakteryzuje się szybkością działania i automatyczną generacją interfejsu API na podstawie adnotacji w kodzie.
   
 ### PyTorch  
   
